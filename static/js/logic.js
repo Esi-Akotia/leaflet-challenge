@@ -20,7 +20,7 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
             let place = feature.properties.place;
        // Define marker options
        let markerOptions = {
-        radius: mag * 2.5, // Reflect magnitude
+        radius: mag * 2, // Reflect magnitude
         weight: 0, // Remove outline
         fillColor: getColor(depth), // Reflect depth
         fillOpacity: 0.7,

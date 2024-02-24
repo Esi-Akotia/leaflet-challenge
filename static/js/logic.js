@@ -20,8 +20,8 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
             let place = feature.properties.place;
        // Define marker options
        let markerOptions = {
-        radius: mag * 2, // Reflect magnitude
-        color: 'black',
+        radius: mag * 2.5, // Reflect magnitude
+        weight: 0, // Remove outline
         fillColor: getColor(depth), // Reflect depth
         fillOpacity: 0.7,
     };
@@ -31,3 +31,17 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
     marker.bindPopup(`<b>${place}</b><br>Magnitude: ${mag}<br>Depth: ${depth} km`);
 });
 });
+
+// Function to get color based on depth
+function getColor(depth) {
+    // Customize this function as per your color preferences
+    if (depth < 10) {
+        return 'green';
+    } else if (depth < 30) {
+        return 'yellow';
+    } else if (depth < 50) {
+        return 'orange';
+    } else {
+        return 'red';
+    }
+}

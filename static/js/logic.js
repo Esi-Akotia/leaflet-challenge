@@ -18,5 +18,16 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
             let lng = feature.geometry.coordinates[0];
             let lat = feature.geometry.coordinates[1];
             let place = feature.properties.place;
-        })});      
-    console.log(mag, depth, lng, lat, place)
+       // Define marker options
+       let markerOptions = {
+        radius: mag * 2, // Reflect magnitude
+        color: 'black',
+        fillColor: getColor(depth), // Reflect depth
+        fillOpacity: 0.7,
+    };
+
+    // Create marker and bind popup
+    let marker = L.circleMarker([lat, lng], markerOptions).addTo(map);
+    marker.bindPopup(`<b>${place}</b><br>Magnitude: ${mag}<br>Depth: ${depth} km`);
+});
+});
